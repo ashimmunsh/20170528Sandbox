@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<contentHaul xmlns:a="http://www.appian.com/ae/types/2009">
+    <rule>
+        <name>Ash_Git_interface</name>
+        <uuid>_a-0000dee7-6165-8000-3120-01ef9001ef90_7508</uuid>
+        <description>dummy interface</description>
+        <parentUuid>_a-0000dee7-6165-8000-3120-01ef9001ef90_7510</parentUuid>
+        <visibility>
+            <advertise>false</advertise>
+            <hierarchy>true</hierarchy>
+            <indexable>true</indexable>
+            <quota>false</quota>
+            <searchable>true</searchable>
+            <system>false</system>
+            <unlogged>false</unlogged>
+        </visibility>
+        <definition>=#"SYSTEM_SYSRULES_formLayout"(
+  label: "New Purchase Request",
+  firstColumnContents: {
+    #"SYSTEM_SYSRULES_sectionLayout"(
+      firstColumnContents: {
+        #"SYSTEM_SYSRULES_pickerFieldUsers"(
+          label: "Requested By",
+          labelPosition: "ABOVE",
+          value: loggedInUser(),
+          /* The saveInto parameter must be configured in order to save a value */
+          saveInto: {},
+          required: true,
+          validations: {}
+        ),
+        #"SYSTEM_SYSRULES_dropdownField"(
+          label: "Department",
+          labelPosition: "ABOVE",
+          placeholderLabel: "--- Select Department ---",
+          choiceLabels: {"Finance", "Human Resources", "Marketing", "Sales", "IT"},
+          choiceValues: {"Finance", "Human Resources", "Marketing", "Sales", "IT"},
+          saveInto: {},
+          required: true,
+          validations: {}
+        ),
+        #"SYSTEM_SYSRULES_dateField"(
+          label: "Due Date",
+          labelPosition: "ABOVE",
+          value: today(),
+          saveInto: {},
+          required: true,
+          validations: {}
+        ),
+        #"SYSTEM_SYSRULES_textField"(
+          label: "Special Instructions",
+          labelPosition: "ABOVE",
+          /* The value parameter must be configured to display a value in the component */
+          saveInto: {},
+          refreshAfter: "UNFOCUS",
+          required: true,
+          validations: {}
+        )
+      },
+      secondColumnContents: {
+        #"SYSTEM_SYSRULES_textField"(
+          label: "Shipping Address",
+          labelPosition: "ABOVE",
+          saveInto: {},
+          refreshAfter: "UNFOCUS",
+          required: true,
+          validations: {}
+        ),
+        #"SYSTEM_SYSRULES_textField"(
+          label: "Town",
+          labelPosition: "ABOVE",
+          saveInto: {},
+          refreshAfter: "UNFOCUS",
+          required: true,
+          validations: {}
+        ),
+        #"SYSTEM_SYSRULES_textField"(
+          label: "State/Province",
+          labelPosition: "ABOVE",
+          saveInto: {},
+          refreshAfter: "UNFOCUS",
+          required: true,
+          validations: {}
+        ),
+        #"SYSTEM_SYSRULES_textField"(
+          label: "Zip/Postal Code",
+          labelPosition: "ABOVE",
+          saveInto: {},
+          refreshAfter: "UNFOCUS",
+          required: true,
+          validations: {}
+        )
+      }
+    ),
+    #"SYSTEM_SYSRULES_gridLayout"(
+      label: "Items",
+      headerCells: {
+        #"SYSTEM_SYSRULES_gridLayoutHeaderCell"(label: "Description"),
+        #"SYSTEM_SYSRULES_gridLayoutHeaderCell"(label: "Category"),
+        #"SYSTEM_SYSRULES_gridLayoutHeaderCell"(label: "Qty", align: "RIGHT"),
+        #"SYSTEM_SYSRULES_gridLayoutHeaderCell"(label: "Unit Price", align: "RIGHT"),
+        #"SYSTEM_SYSRULES_gridLayoutHeaderCell"(label: "Amount", align: "RIGHT"),
+        #"SYSTEM_SYSRULES_gridLayoutHeaderCell"(label: "")
+      },
+      columnConfigs: {
+        #"SYSTEM_SYSRULES_gridLayoutColumnConfig"(width: "DISTRIBUTE", weight: 3),
+        #"SYSTEM_SYSRULES_gridLayoutColumnConfig"(width: "DISTRIBUTE", weight: 3),
+        #"SYSTEM_SYSRULES_gridLayoutColumnConfig"(width: "DISTRIBUTE"),
+        #"SYSTEM_SYSRULES_gridLayoutColumnConfig"(width: "DISTRIBUTE", weight: 2),
+        #"SYSTEM_SYSRULES_gridLayoutColumnConfig"(width: "DISTRIBUTE", weight: 2),
+        #"SYSTEM_SYSRULES_gridLayoutColumnConfig"(width: "ICON")
+      },
+      rows: {
+        #"SYSTEM_SYSRULES_gridRowLayout"(
+          contents: {
+            #"SYSTEM_SYSRULES_textField"(saveInto: {}, refreshAfter: "UNFOCUS", validations: {}),
+            #"SYSTEM_SYSRULES_dropdownField"(placeholderLabel: "--- Select a Category ---", choiceLabels: {"Hardware", "Software", "Travel", "Recruiting", "Miscellaneous"}, choiceValues: {"Hardware", "Software", "Travel", "Recruiting", "Miscellaneous"}, saveInto: {}, validations: {}),
+            #"SYSTEM_SYSRULES_integerField"(saveInto: {}, validations: {}, align: "RIGHT"),
+            #"SYSTEM_SYSRULES_floatingPointField"(saveInto: {}, validations: {}, align: "RIGHT"),
+            #"SYSTEM_SYSRULES_textField"(value: dollar(0), saveInto: {}, refreshAfter: "UNFOCUS", readOnly: true, validations: {}, align: "RIGHT"),
+            #"SYSTEM_SYSRULES_imageField"(images: {#"SYSTEM_SYSRULES_documentImage"(document: #"SYSTEM_SYSRULES_iconIndicator"("REMOVE"), link: #"SYSTEM_SYSRULES_dynamicLink"(saveInto: {}))}, size: "ICON")
+          }
+        ),
+        #"SYSTEM_SYSRULES_gridRowLayout"(
+          contents: {
+            #"SYSTEM_SYSRULES_textField"(readOnly: true),
+            #"SYSTEM_SYSRULES_textField"(readOnly: true),
+            #"SYSTEM_SYSRULES_textField"(readOnly: true),
+            #"SYSTEM_SYSRULES_textField"(value: "Total", readOnly: true, align: "RIGHT"),
+            #"SYSTEM_SYSRULES_textField"(value: dollar(0), readOnly: true, align: "RIGHT"),
+            #"SYSTEM_SYSRULES_textField"(readOnly: true)
+          }
+        )
+      },
+      addRowLink: #"SYSTEM_SYSRULES_dynamicLink"(label: "Add Item", saveInto: {})
+    )
+  },
+  secondColumnContents: {},
+  buttons: #"SYSTEM_SYSRULES_ButtonLayout"(
+    primaryButtons: {
+      #"SYSTEM_SYSRULES_ButtonWidgetSubmit"(
+        label: "Submit",
+        style: "PRIMARY",
+        saveInto: {}
+      )
+    },
+    secondaryButtons: {
+      #"SYSTEM_SYSRULES_ButtonWidgetSubmit"(
+        label: "Cancel",
+        style: "NORMAL",
+        value: true,
+        saveInto: ri!cancel,
+        skipValidation: true
+      )
+    }
+  ),
+  validations: {}
+)</definition>
+        <namedTypedValue>
+            <name>cancel</name>
+            <type>
+                <name>boolean</name>
+                <namespace>http://www.w3.org/2001/XMLSchema</namespace>
+            </type>
+        </namedTypedValue>
+        <metadataExpr></metadataExpr>
+        <preferredEditor>interface</preferredEditor>
+        <offlineEnabled>false</offlineEnabled>
+    </rule>
+    <roleMap public="true">
+        <role inherit="true" allowForAll="false" name="readers">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="true" allowForAll="false" name="authors">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="true" allowForAll="false" name="administrators">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyReaders">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyAuthors">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyAdministrators">
+            <users/>
+            <groups/>
+        </role>
+    </roleMap>
+</contentHaul>

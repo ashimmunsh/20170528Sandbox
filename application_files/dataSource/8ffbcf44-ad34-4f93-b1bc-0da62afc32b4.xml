@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<dataSourceHaul xmlns:a="http://www.appian.com/ae/types/2009">
+    <dataSourceInfo>
+        <uuid>8ffbcf44-ad34-4f93-b1bc-0da62afc32b4</uuid>
+        <name>jdbc/AppianBusinessDS</name>
+        <type>MySQL</type>
+        <connectionString>jdbc:mysql://localhost:3306/appian_businessdata?useOldAliasMetadataBehavior=true</connectionString>
+    </dataSourceInfo>
+</dataSourceHaul>

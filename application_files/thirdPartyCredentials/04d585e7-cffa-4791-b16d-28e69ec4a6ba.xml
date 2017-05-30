@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<thirdPartyCredentialsHaul xmlns:a="http://www.appian.com/ae/types/2009">
+    <externalSystem>
+        <a:uuid>04d585e7-cffa-4791-b16d-28e69ec4a6ba</a:uuid>
+        <a:name>jira</a:name>
+        <a:key>jira</a:key>
+        <a:attribute>
+            <a:key>username</a:key>
+            <a:name>username</a:name>
+            <a:showValueOnUi>true</a:showValueOnUi>
+        </a:attribute>
+        <a:attribute>
+            <a:key>passowrd</a:key>
+            <a:name>password</a:name>
+            <a:showValueOnUi>true</a:showValueOnUi>
+        </a:attribute>
+        <a:showPerUser>false</a:showPerUser>
+        <a:testExpression>#"SYSTEM_SYSRULES_httpHeader"(
+name:"Authorization",
+value:#"SYSTEM_SYSRULES_scsField"(
+externalSystemKey:"jira",
+fieldKey:"jira"))</a:testExpression>
+    </externalSystem>
+</thirdPartyCredentialsHaul>
